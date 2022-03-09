@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import HeaderClass from "./components/HeaderClass";
+import HeaderFunction from "./components/HeaderFunction";
+import HomeComponent from "./components/BaiTapLayout/HomeComponent";
+import Databinding from "./DataBinding/Databinding";
+import Handleevent from "./HandleEvent/Handleevent";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <HomeComponent/> */}
+      {/* Hello iHii */}
+      {/* Cách 1
+      <HeaderClass/>
+      <HeaderFunction/> */}
+      {/* Cách 2
+      <HeaderClass></HeaderClass>  */}
+
+      {/* <Databinding /> */}
+
+      <Handleevent/>
     </div>
   );
 }
