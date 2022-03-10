@@ -5,6 +5,10 @@ import HeaderFunction from "./components/HeaderFunction";
 import HomeComponent from "./components/BaiTapLayout/HomeComponent";
 import Databinding from "./DataBinding/Databinding";
 import Handleevent from "./HandleEvent/Handleevent";
+import Rendering_Conditions from "./Rendering_Condition/Rendering_Conditions";
+import Ex1StateDemo from "./StateDemo/Ex1StateDemo";
+import RenderWithMap from "./RenderWithMap/RenderWithMap";
+import QuanLyDanhSachPhim from "./RenderWithMap/QuanLyDanhSachPhim";
 
 function App() {
   return (
@@ -19,7 +23,15 @@ function App() {
 
       {/* <Databinding /> */}
 
-      <Handleevent/>
+      {/* <Handleevent/> */}
+
+      {/* <Rendering_Conditions/> */}
+
+      {/* <Ex1StateDemo/> */}
+
+      {/* <RenderWithMap/> */}
+
+      <QuanLyDanhSachPhim />
     </div>
   );
 }
