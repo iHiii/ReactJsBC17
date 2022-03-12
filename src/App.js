@@ -9,6 +9,9 @@ import Rendering_Conditions from "./Rendering_Condition/Rendering_Conditions";
 import Ex1StateDemo from "./StateDemo/Ex1StateDemo";
 import RenderWithMap from "./RenderWithMap/RenderWithMap";
 import QuanLyDanhSachPhim from "./RenderWithMap/QuanLyDanhSachPhim";
+import DemoProps from "./Props/DemoProps/DemoProps";
+import ShoesShop from "./Props/ShoesShop/ShoesShop";
+import BaiTapXemChiTietSP from "./Props/BaiTapXemChiTietSP/BaiTapXemChiTietSP";
 
 function App() {
   return (
@@ -31,7 +34,13 @@ function App() {
 
       {/* <RenderWithMap/> */}
 
-      <QuanLyDanhSachPhim />
+      {/* <QuanLyDanhSachPhim /> */}
+
+      {/* <DemoProps /> */}
+
+      {/* <ShoesShop /> */}
+
+      <BaiTapXemChiTietSP/>
     </div>
   );
 }
