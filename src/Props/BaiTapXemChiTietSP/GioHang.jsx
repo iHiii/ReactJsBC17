@@ -65,9 +65,23 @@ export default class GioHang extends Component {
                           </td>
                           <td>{spGH.giaBan}</td>
                           <td>
-                            <button>+</button>
+                            <button
+                              className="btn btn-primary"
+                              onClick={() => {
+                                this.props.tangGiamSoLuong(spGH.maSP,1);
+                              }}
+                            >
+                              +
+                            </button>
                             {spGH.soLuong}
-                            <button>-</button>
+                            <button
+                              className="btn btn-primary"
+                              onClick={() => {
+                                this.props.tangGiamSoLuong(spGH.maSP,-1);
+                              }}
+                            >
+                              -
+                            </button>
                           </td>
                           <td>{spGH.giaBan * spGH.soLuong}</td>
                           <td>

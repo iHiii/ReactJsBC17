@@ -67,9 +67,35 @@ export default class BaiTapXemChiTietSP extends Component {
     ],
   };
 
+  //state đặt ở đâu thì setState sẽ đặt ở component đó
+  tangGiamSoLuong = (maSP, soLuong) => {
+    // console.log('maSPClick', maSP);
+    // console.log(soLuong);
+
+    let gioHangUpdate = [...this.state.gioHang];
+
+    let spTangGiam = gioHangUpdate.find((sp) => sp.maSP === maSP);
+    if (spTangGiam) {
+      spTangGiam.soLuong += soLuong;
+      //Kiểm tra sau khi +- số lượng < 1
+      if (spTangGiam.soLuong < 1) {
+        if (window.confirm("Bạn có muốn xóa hay không?")) {
+          this.xoaGioHang(spTangGiam.maSP);
+          return;
+        }
+        spTangGiam.soLuong -= soLuong;
+      }
+    }
+
+    //setState
+    this.setState({
+      gioHang: gioHangUpdate,
+    });
+  };
+
   //Hàm xóa giỏ hàng viết tại nơi chứa state.gioHang
   xoaGioHang = (maSPClick) => {
-      let gioHangUpdate = [...this.state.gioHang]
+    let gioHangUpdate = [...this.state.gioHang];
     let index = gioHangUpdate.findIndex((sp) => sp.maSP == maSPClick);
     if (index != -1) {
       gioHangUpdate.splice(index, 1);
@@ -113,6 +139,22 @@ export default class BaiTapXemChiTietSP extends Component {
     });
   };
 
+  tinhTongSoLuong = () => {
+    //giỏ hàng [{maSP:1,soLuong:2} {maSP:3,soLuong:5}]
+    let tongSoLuong = 0; //output: tổng số lượng
+
+    for (let spGH of this.state.gioHang) {
+      tongSoLuong += spGH.soLuong;
+    }
+    return tongSoLuong;
+
+    //cách 2 (cách làm biếng)
+    // let tongSoLuong = this.state.gioHang.reduce((soLuong, spGioHang, index) => {
+    //   return (soLuong += sp.soLuong);
+    // }, 0);
+    // return tongSoLuong;
+  };
+
   render() {
     let {
       maSP,
@@ -135,9 +177,13 @@ export default class BaiTapXemChiTietSP extends Component {
             className="text-danger font-weight-bold"
             style={{ cursor: "pointer" }}
           >
-            Giỏ hàng (0)
+            Giỏ hàng ({this.tinhTongSoLuong()})
           </h3>
-          <GioHang gioHang={this.state.gioHang} xoaSanPham = {this.xoaGioHang} />
+          <GioHang
+            tangGiamSoLuong={this.tangGiamSoLuong}
+            gioHang={this.state.gioHang}
+            xoaSanPham={this.xoaGioHang}
+          />
         </div>
         <h3>Danh sách sản phẩm</h3>
         <div className="row">
