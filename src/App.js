@@ -12,6 +12,7 @@ import QuanLyDanhSachPhim from "./RenderWithMap/QuanLyDanhSachPhim";
 import DemoProps from "./Props/DemoProps/DemoProps";
 import ShoesShop from "./Props/ShoesShop/ShoesShop";
 import BaiTapXemChiTietSP from "./Props/BaiTapXemChiTietSP/BaiTapXemChiTietSP";
+import BaiTapGioHangRedux from "./DemoRedux/BaiTapGioHangRedux/BaiTapGioHangRedux";
 
 function App() {
   return (
@@ -40,7 +41,9 @@ function App() {
 
       {/* <ShoesShop /> */}
 
-      <BaiTapXemChiTietSP/>
+      {/* <BaiTapXemChiTietSP/> */}
+
+      <BaiTapGioHangRedux />
     </div>
   );
 }
