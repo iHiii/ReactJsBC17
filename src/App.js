@@ -13,6 +13,7 @@ import DemoProps from "./Props/DemoProps/DemoProps";
 import ShoesShop from "./Props/ShoesShop/ShoesShop";
 import BaiTapXemChiTietSP from "./Props/BaiTapXemChiTietSP/BaiTapXemChiTietSP";
 import BaiTapGioHangRedux from "./DemoRedux/BaiTapGioHangRedux/BaiTapGioHangRedux";
+import GameXucXac from "./DemoRedux/GameXucXac/GameXucXac";
 
 function App() {
   return (
@@ -43,7 +44,9 @@ function App() {
 
       {/* <BaiTapXemChiTietSP/> */}
 
-      <BaiTapGioHangRedux />
+      {/* <BaiTapGioHangRedux /> */}
+
+      <GameXucXac />
     </div>
   );
 }

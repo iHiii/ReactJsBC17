@@ -30,10 +30,36 @@ class GioHangRedux extends Component {
                     <img src={spGH.hinhAnh} alt="" width={50} />
                   </td>
                   <td>{spGH.giaBan}</td>
-                  <td>{spGH.soLuong}</td>
+                  <td>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        this.props.tangGiamSoLuong(spGH.maSP, 1);
+                      }}
+                    >
+                      +
+                    </button>
+                    {spGH.soLuong}
+
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        this.props.tangGiamSoLuong(spGH.maSP, -1);
+                      }}
+                    >
+                      -
+                    </button>
+                  </td>
                   <td>{spGH.giaBan * spGH.soLuong}</td>
                   <td>
-                    <button className="btn btn-danger">Xóa</button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => {
+                        this.props.xoaGiohang(spGH.maSP);
+                      }}
+                    >
+                      Xóa
+                    </button>
                   </td>
                 </tr>
               );
@@ -53,7 +79,42 @@ const mapStateToProps = (rootReducer) => {
   };
 };
 
+//Định nghĩa hàm mapDispatchToProps để tạo props là phương thức gửi dữ liệu lên reducer
+const mapDispatchToProps = (dispatch) => {
+  return {
+    //new props
+    xoaGiohang: (maSPXoa) => {
+      // console.log("Mã sản phẩm click xóa", maSPXoa);
+      // alert(maSPXoa);
+      if (window.confirm("Bạn có muốn xóa không?")) {
+        const action = {
+          type: "Xoa_Gio_Hang",
+          maSPXoa,
+        };
+
+        //Sử dụng hàm dispatch để đưa tất cả action lên tất cả reducer
+        dispatch(action);
+      }
+    },
+
+    tangGiamSoLuong: (maSP, soLuong) => {
+      // alert(maSP + '-'+ soLuong);
+      const action = {
+        type: "Tang_Giam_SL",
+        maSP,
+        soLuong,
+      };
+      
+      //Sau khi bấm +- tạo dữ liệu action gửi lên redux
+      dispatch(action);
+    },
+  };
+};
+
 //Khi connect thành công sẽ trả về 1 component kết nối với redux store, và mình expore default component đó ra luôn
-const ComponentRedux = connect(mapStateToProps)(GioHangRedux);
+const ComponentRedux = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GioHangRedux);
 
 export default ComponentRedux;

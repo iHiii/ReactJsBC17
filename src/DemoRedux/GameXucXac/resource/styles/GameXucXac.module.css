@@ -1,0 +1,13 @@
+/* Khi tách file css ra thì resource đi theo đường dẫn tương đối so với file css */
+
+@font-face {
+  font-family: fontGame;
+  src: url(../gameXucXac/Pony.ttf);
+}
+
+.bg-game {
+  background-image: url(../gameXucXac/bgGame.png);
+  width: 100vw;
+  height: 100vh;
+  font-family: fontGame;
+}
