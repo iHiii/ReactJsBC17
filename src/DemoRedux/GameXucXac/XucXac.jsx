@@ -2,6 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class XucXac extends Component {
+  renderKetQua = () => {
+    let tongDiem = this.props.mangXucXac.reduce((diem, xx, index) => {
+      return (diem += xx.diem);
+    }, 0);
+
+    let taiXiu = tongDiem > 11 ? "Tài" : "Xỉu";
+
+    return (
+      <p>
+        {tongDiem} - {taiXiu}
+      </p>
+    );
+  };
+
   render() {
     console.log("this.props", this.props);
 
@@ -14,6 +28,11 @@ class XucXac extends Component {
                 background: "none",
                 border: "none",
                 borderRadius: "200",
+              }}
+              onClick={() => {
+                const action = { type: "DAT_CUOC", banChon: true };
+                //Sử dụng this.props.dispatch để đưa dữ liệu lên reducer (component phải connect với redux mới có props này)
+                this.props.dispatch(action);
               }}
             >
               <div className="btn btn-danger text-white display-4 p-5">Tài</div>
@@ -32,6 +51,11 @@ class XucXac extends Component {
                 ></img>
               );
             })}
+
+            <br />
+            <div className="display-4 text-warning mt-2">
+              {this.renderKetQua()}
+            </div>
           </div>
 
           <div className="col-4">
@@ -40,6 +64,11 @@ class XucXac extends Component {
                 background: "none",
                 border: "none",
                 borderRadius: "200",
+              }}
+              onClick={() => {
+                const action = { type: "DAT_CUOC", banChon: false };
+                //Sử dụng this.props.dispatch để đưa dữ liệu lên reducer (component phải connect với redux mới có props này)
+                this.props.dispatch(action);
               }}
             >
               <div className="btn btn-danger text-white display-4 p-5">Xỉu</div>

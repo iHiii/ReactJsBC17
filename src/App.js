@@ -14,6 +14,7 @@ import ShoesShop from "./Props/ShoesShop/ShoesShop";
 import BaiTapXemChiTietSP from "./Props/BaiTapXemChiTietSP/BaiTapXemChiTietSP";
 import BaiTapGioHangRedux from "./DemoRedux/BaiTapGioHangRedux/BaiTapGioHangRedux";
 import GameXucXac from "./DemoRedux/GameXucXac/GameXucXac";
+import BaiTapQuanLyNguoiDung from "./ReactForm/BaiTapQuanLyNguoiDung/BaiTapQuanLyNguoiDung";
 
 function App() {
   return (
@@ -46,7 +47,9 @@ function App() {
 
       {/* <BaiTapGioHangRedux /> */}
 
-      <GameXucXac />
+      {/* <GameXucXac /> */}
+
+      <BaiTapQuanLyNguoiDung />
     </div>
   );
 }

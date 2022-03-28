@@ -22,7 +22,17 @@ class KetQuaTroChoi extends Component {
         </div>
 
         <div>
-          <button className="btn btn-success p-5" style={{ fontSize: 25 }}>
+          <button
+            className="btn btn-success p-5"
+            style={{ fontSize: 25 }}
+            onClick={() => {
+              const action = {
+                type: "PLAY_GAME",
+              };
+              //Gửi lên redux để redux biết có cái action playgame xảy ra
+              this.props.dispatch(action);
+            }}
+          >
             Play game
           </button>
         </div>
