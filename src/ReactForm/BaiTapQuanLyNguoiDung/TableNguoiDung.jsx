@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class TableNguoiDung extends Component {
+class TableNguoiDung extends Component {
   render() {
     return (
       <table className="table">
@@ -15,21 +16,60 @@ export default class TableNguoiDung extends Component {
             <th></th>
           </tr>
         </thead>
+
         <tbody>
-          <tr>
-            <td>Tài khoản</td>
-            <td>Mật khẩu</td>
-            <td>Họ tên</td>
-            <td>Email</td>
-            <td>Số điện thoại</td>
-            <td>Loại người dùng</td>
-            <td>
-              <button className="btn btn-danger">Xóa</button>
-              <button className="btn btn-primary ml-2">Sửa</button>
-            </td>
-          </tr>
+          {this.props.mangNguoiDung.map((nguoiDung, index) => {
+            return (
+              <tr key={index}>
+                <td>{nguoiDung.taiKhoan}</td>
+                <td>{nguoiDung.matKhau}</td>
+                <td>{nguoiDung.hoTen}</td>
+                <td>{nguoiDung.email}</td>
+                <td>{nguoiDung.soDienThoai}</td>
+                <td>{nguoiDung.loaiNguoiDung}</td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      const action = {
+                        type: "XOA_NGUOI_DUNG",
+                        taiKhoan: nguoiDung.taiKhoan,
+                      };
+                      //Đưa dữ liệu lên redux
+                      this.props.dispatch(action);
+                    }}
+                  >
+                    Xóa
+                  </button>
+                  <button
+                    className="btn btn-primary ml-2"
+                    onClick={() => {
+                      const action = {
+                        type: "SUA_NGUOI_DUNG",
+                        nguoiDung: nguoiDung,
+                      };
+                      //Sau khi bấm nút sửa sẽ tạo ra action và đưa lên redux để thay đổi giá trị của state.nguoiDungSua
+                      this.props.dispatch(action);
+                    }}
+                  >
+                    Sửa
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     );
   }
 }
+
+// {return} = () (cách viết tắt)
+
+const mapStateToProps = (rootReducer) => {
+  return {
+    mangNguoiDung: rootReducer.quanLyNguoiDungReducer.mangNguoiDung,
+  };
+};
+
+export default connect(mapStateToProps)(TableNguoiDung);

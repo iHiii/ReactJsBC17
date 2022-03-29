@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class FormNguoiDung extends Component {
+class FormNguoiDung extends Component {
   state = {
     values: {
       taiKhoan: "",
@@ -16,32 +17,6 @@ export default class FormNguoiDung extends Component {
       hoTen: "",
       email: "",
     },
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault(); //Đây là hàm cản sự kiện reload của browser
-    //Kiểm tra dữ liệu có bị lỗi hay không trước khi submit
-    let valid = true;
-
-    //Lấy ra this.state.errors kiểm tra
-    let { errors, values } = this.state;
-    for (let key in errors) {
-      //Nếu như có trường errors nào không hợp lệ
-      if (errors[key] !== "") {
-        valid = false;
-      }
-    }
-
-    for (let key in values) {
-      //Nếu có 1 trường value nào = rỗng => không hợp lệ
-      if (values[key] === "") {
-        valid = false;
-      }
-    }
-    if (!valid) {
-      alert("Dữ liệu không hợp lệ");
-      return;
-    }
   };
 
   handleChangeInput = (e) => {
@@ -94,7 +69,44 @@ export default class FormNguoiDung extends Component {
     );
   };
 
+  handleSubmit = (e) => {
+    e.preventDefault(); //Đây là hàm cản sự kiện reload của browser
+    //Kiểm tra dữ liệu có bị lỗi hay không trước khi submit
+    let valid = true;
+
+    //Lấy ra this.state.errors kiểm tra
+    let { errors, values } = this.state;
+    for (let key in errors) {
+      //Nếu như có trường errors nào không hợp lệ
+      if (errors[key] !== "") {
+        valid = false;
+      }
+    }
+
+    for (let key in values) {
+      //Nếu có 1 trường value nào = rỗng => không hợp lệ
+      if (values[key] === "") {
+        valid = false;
+      }
+    }
+    if (!valid) {
+      alert("Dữ liệu không hợp lệ");
+      return;
+    }
+
+    //Nếu dữ liệu hợp lệ thì gửi đi lên redux
+    const action = {
+      type: "THEM_NGUOI_DUNG",
+      nguoiDung: this.state.values,
+    };
+    //Đưa dữ liệu lên redux
+    this.props.dispatch(action);
+  };
+
   render() {
+    let { taiKhoan, hoTen, matKhau, email, soDienThoai, loaiNguoiDung } =
+      this.props.nguoiDungSua;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="card">
@@ -112,6 +124,7 @@ export default class FormNguoiDung extends Component {
                     id="taiKhoan"
                     name="taiKhoan"
                     onChange={this.handleChangeInput}
+                    value={taiKhoan}
                   />
                   <p className="text-danger">{this.state.errors.taiKhoan}</p>
                 </div>
@@ -124,6 +137,7 @@ export default class FormNguoiDung extends Component {
                     id="hoTen"
                     name="hoTen"
                     onChange={this.handleChangeInput}
+                    value={hoTen}
                   />
                   <p className="text-danger">{this.state.errors.hoTen}</p>
                 </div>
@@ -136,6 +150,7 @@ export default class FormNguoiDung extends Component {
                     id="matKhau"
                     name="matKhau"
                     onChange={this.handleChangeInput}
+                    value={matKhau}
                   />
                   <p className="text-danger">{this.state.errors.matKhau}</p>
                 </div>
@@ -149,6 +164,7 @@ export default class FormNguoiDung extends Component {
                     id="email"
                     name="email"
                     onChange={this.handleChangeInput}
+                    value={email}
                   />
                   <p className="text-danger">{this.state.errors.email}</p>
                 </div>
@@ -161,6 +177,7 @@ export default class FormNguoiDung extends Component {
                     id="soDienThoai"
                     name="soDienThoai"
                     onChange={this.handleChangeInput}
+                    value={soDienThoai}
                   />
                   <p className="text-danger">{this.state.errors.soDienThoai}</p>
                 </div>
@@ -172,6 +189,7 @@ export default class FormNguoiDung extends Component {
                     id="maLoaiNguoiDung"
                     name="maLoaiNguoiDung"
                     onChange={this.handleChangeInput}
+                    value={loaiNguoiDung}
                   >
                     <option>QuanTri</option>
                     <option>NguoiDung</option>
@@ -185,7 +203,7 @@ export default class FormNguoiDung extends Component {
             <button
               type="submit"
               className="btn btn-success"
-              onClick={this.handleSubmit}
+              onSubmit={this.handleSubmit}
             >
               Đăng ký
             </button>
@@ -195,3 +213,11 @@ export default class FormNguoiDung extends Component {
     );
   }
 }
+
+const mapStateToProps = (rootReducer) => {
+  return {
+    nguoiDungSua: rootReducer.quanLyNguoiDungReducer.nguoiDungSua,
+  };
+};
+
+export default connect(mapStateToProps)(FormNguoiDung);

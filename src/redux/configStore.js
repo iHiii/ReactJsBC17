@@ -1,6 +1,7 @@
 import { combineReducers, createStore } from "redux";
 import { gameXucXacReducer } from "./reducers/gameXucXacReducer";
 import { gioHangReducer } from "./reducers/gioHangReducer";
+import { quanLyNguoiDungReducer } from "./reducers/quanLyNguoiDungReducer";
 
 //rootReducer xem như là state tổng của ứng dụng
 const rootReducer = combineReducers({
@@ -9,9 +10,7 @@ const rootReducer = combineReducers({
 
   gioHangReducer: gioHangReducer,
 
-  numberReducer: (state = 1, action) => {
-    return state;
-  },
+  quanLyNguoiDungReducer: quanLyNguoiDungReducer,
 });
 
 export const store = createStore(
