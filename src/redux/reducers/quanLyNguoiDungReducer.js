@@ -5,7 +5,7 @@ const stateDefault = {
       hoTen: "Nguyen Van A",
       matKhau: "123123",
       email: "nguyenvana@gmail.com",
-      loaiNguoiDung: "QuanTri",
+      maLoaiNguoiDung: "QuanTri",
       soDienThoai: "09099090",
     },
     {
@@ -13,7 +13,7 @@ const stateDefault = {
       hoTen: "Tran Thi B",
       matKhau: "123123",
       email: "tranthib@gmail.com",
-      loaiNguoiDung: "NguoiDung",
+      maLoaiNguoiDung: "NguoiDung",
       soDienThoai: "08088080",
     },
   ],
@@ -23,7 +23,7 @@ const stateDefault = {
     hoTen: "",
     matKhau: "",
     email: "",
-    loaiNguoiDung: "",
+    maLoaiNguoiDung: "QuanTri",
     soDienThoai: "",
   },
 };
@@ -57,6 +57,23 @@ export const quanLyNguoiDungReducer = (state = stateDefault, action) => {
 
     case "SUA_NGUOI_DUNG": {
       state.nguoiDungSua = action.nguoiDung;
+      return { ...state };
+    }
+
+    case "CAP_NHAP_THONG_TIN": {
+      let mangNguoiDung = [...state.mangNguoiDung];
+      let ndUpdate = mangNguoiDung.find(
+        (nguoiDung) => nguoiDung.taiKhoan === action.nguoiDung.taiKhoan
+      );
+      if (ndUpdate) {
+        //Lấy giá trị người dùng thay đổi (action.nguoiDung)
+        // ndUpdate.hoTen = action.nguoiDung.hoTen;
+        for (let key in ndUpdate) {
+          ndUpdate[key] = action.nguoiDung[key];
+        }
+      }
+      //Sau khi sửa cập nhật lại state
+      state.mangNguoiDung = mangNguoiDung;
       return { ...state };
     }
 

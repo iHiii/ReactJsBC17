@@ -103,9 +103,30 @@ class FormNguoiDung extends Component {
     this.props.dispatch(action);
   };
 
+  //Can thiệp vào lifecycle khi props hoặc state thay đổi thành hàm này sẽ thực thi trước khi render
+  // static getDerivedStateFromProps(newProps, state) {
+
+  //     // //Chỉ khi nào ng dùng bấm nút sửa thì mới xử lý này
+  //     if (state.values.taiKhoan !== newProps.nguoiDungSua.taiKhoan) {
+  //         console.log('newProps', newProps);
+  //         console.log('currentState', state);
+  //         //Lấy dữ liệu từ newprops gán vào state => sau khi render dữ liệu binding từ state
+  //         state.values = { ...newProps.nguoiDungSua }
+  //     }
+  //     return state;
+  // }
+  //Chỉ chạy khi props thay đổi
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      values: newProps.nguoiDungSua,
+    });
+  }
+
   render() {
-    let { taiKhoan, hoTen, matKhau, email, soDienThoai, loaiNguoiDung } =
-      this.props.nguoiDungSua;
+    // let { taiKhoan, hoTen, matKhau, email, soDienThoai, loaiNguoiDung } = this.props.nguoiDungSua;
+
+    let { taiKhoan, hoTen, matKhau, email, maLoaiNguoiDung, soDienThoai } =
+      this.state.values;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -189,7 +210,7 @@ class FormNguoiDung extends Component {
                     id="maLoaiNguoiDung"
                     name="maLoaiNguoiDung"
                     onChange={this.handleChangeInput}
-                    value={loaiNguoiDung}
+                    value={maLoaiNguoiDung}
                   >
                     <option>QuanTri</option>
                     <option>NguoiDung</option>
@@ -206,6 +227,22 @@ class FormNguoiDung extends Component {
               onSubmit={this.handleSubmit}
             >
               Đăng ký
+            </button>
+
+            <button
+              className="btn btn-primary ml-2"
+              type="button"
+              onClick={() => {
+                //Gửi dữ liệu về redux thay đổi mảng người dùng
+                const action = {
+                  type: "CAP_NHAP_THONG_TIN",
+                  nguoiDung: this.state.values,
+                };
+                //Đưa dữ liệu lên redux
+                this.props.dispatch(action);
+              }}
+            >
+              Cập nhật người dùng
             </button>
           </div>
         </div>
