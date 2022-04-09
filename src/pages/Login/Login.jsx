@@ -22,6 +22,7 @@ export default class Login extends Component {
       this.props.history.push("/profile");
       //Thay đổi đường dẫn hiện tại = đường dẫn truyền vào
       // this.props.history.replace('/profile');
+      localStorage.setItem("USER_LOGIN", this.state.taiKhoan);
     } else {
       alert("Bạn cần đăng ký tài khoản để đăng nhập !");
       this.props.history.push("/register");

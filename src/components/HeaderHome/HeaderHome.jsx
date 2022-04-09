@@ -71,6 +71,34 @@ export default function HeaderHome() {
               register
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink
+              exact
+              activeClassName="bg-white text-dark"
+              className="nav-link"
+              to="/todoapp"
+            >
+              Todoapp
+            </NavLink>
+          </li>
+          <li className="nav-item dropdown">
+            <a
+              className="nav-link dropdown-toggle"
+              href="#"
+              id="dropdownId"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Hooks
+            </a>
+            <div className="dropdown-menu" aria-labelledby="dropdownId">
+              <NavLink className="dropdown-item" to="/usestate">
+                Use state
+              </NavLink>
+            </div>
+          </li>
+
           {/* <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                         <div className="dropdown-menu" aria-labelledby="dropdownId">
