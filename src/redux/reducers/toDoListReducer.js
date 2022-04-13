@@ -1,0 +1,14 @@
+const stateDefault = {
+  arrTask: [],
+};
+
+export const toDoListReducer = (state = stateDefault, action) => {
+  switch (action.type) {
+    case "GET_ALL_TASK_API": {
+      state.arrTask = action.arrTask;
+      return { ...state };
+    }
+    default:
+      return state;
+  }
+};

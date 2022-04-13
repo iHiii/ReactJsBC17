@@ -7,9 +7,15 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import HeaderHome from "./components/HeaderHome/HeaderHome";
 import Profile from "./pages/Profile/Profile";
-import Detail from './pages/Detail/Detail';
-import ToDoApp from './pages/DemoAxios/ToDoApp/ToDoApp';
-import UseStateDemo from './pages/Hooks/UseStateDemo/UseStateDemo';
+import Detail from "./pages/Detail/Detail";
+import ToDoApp from "./pages/DemoAxios/ToDoApp/ToDoApp";
+import UseStateDemo from "./pages/Hooks/UseStateDemo/UseStateDemo";
+import UseEffectDemo from "./pages/Hooks/UseEffect/UseEffectDemo";
+import UseCallbackDemo from "./pages/Hooks/UseCallback/UseCallbackDemo";
+import UseMemoDemo from "./pages/Hooks/UseMemo/UseMemoDemo";
+import UseRefDemo from "./pages/Hooks/UseRef/UseRefDemo";
+import ReduxHook from "./pages/Hooks/ReduxHook/ReduxHook";
+import ToDoListHook from "./pages/Hooks/ToDoListHook/ToDoListHook";
 
 function App() {
   return (
@@ -40,6 +46,12 @@ function App() {
         <Route exact path={"/detail/:id"} component={Detail} />
         <Route exact path={"/todoapp"} component={ToDoApp} />
         <Route exact path={"/usestate"} component={UseStateDemo} />
+        <Route exact path={"/useeffect"} component={UseEffectDemo} />
+        <Route exact path={"/usecallback"} component={UseCallbackDemo} />
+        <Route exact path={"/usememo"} component={UseMemoDemo} />
+        <Route exact path={"/useref"} component={UseRefDemo} />
+        <Route exact path={"/reduxhook"} component={ReduxHook} />
+        <Route exact path={"/todolisthook"} component={ToDoListHook} />
 
         <Route exact path={"/"} component={Home} />
       </Switch>

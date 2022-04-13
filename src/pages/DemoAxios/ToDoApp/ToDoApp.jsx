@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { getApiArrTaskAction } from "../../../redux/actions/toDoListAction";
 export default class ToDoApp extends Component {
   state = {
     arrTask: [],
+    number: 1,
   };
 
   getTaskApi = () => {
