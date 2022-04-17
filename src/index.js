@@ -7,7 +7,10 @@ import App from "./App";
 //config store redux
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
+
+//Import css antd
+import "antd/dist/antd.css";
 
 ReactDOM.render(
   <Provider store={store}>

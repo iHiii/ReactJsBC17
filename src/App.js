@@ -20,6 +20,13 @@ import DemoHOC from "./pages/HOC/DemoHOC/DemoHOC";
 import ModalHOC from "./pages/HOC/DemoHOC/ModalHOC";
 import HomeTemplate from "./templates/HomeTemplate/HomeTemplate";
 
+import UserTemplate from "./templates/UserTemplate/UserTemplate";
+import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
+import Index from "./pages/AdminPage/Index/Index";
+import User from "./pages/AdminPage/Users/User";
+import DemoAntD from "./pages/DemoAntD/DemoAntD";
+import DemoLayout from "./pages/DemoAntD/DemoLayout";
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,26 +35,11 @@ function App() {
       {/* <Home abc="123" /> */}
       <ModalHOC />
       <Switch>
-        {/* <Route exact path={'/home'} render={(pRoute) => { //propRoute là props của thẻ Route bao gồm : history,match,location
-          return <div>
-            <HeaderHome />
-            <Home {...pRoute} />
-          </div>
-        }} />
-        <Route exact path={'/about'} component={About} />
-        <Route exact path={'/contact'} component={Contact} />
-        <Route exact path={'/login'} component={Login} />
-        <Route exact path={'/about'} render={(pRoute) => { //propRoute là props của thẻ Route bao gồm : history,match,location
-          return <div>
-            <HeaderHome />
-            <About {...pRoute} />
-          </div>
-        }} /> */}
         <HomeTemplate path="/home" component={Home} />
         <HomeTemplate path="/about" component={About} />
         <HomeTemplate exact path={"/contact"} component={Contact} />
-        <HomeTemplate exact path={"/login"} component={Login} />
-        <Route exact path={"/register"} component={Register} />
+        <UserTemplate exact path={"/login"} component={Login} />
+        <UserTemplate exact path={"/register"} component={Register} />
         <Route exact path={"/profile"} component={Profile} />
         <Route exact path={"/detail/:id"} component={Detail} />
         <Route exact path={"/todoapp"} component={ToDoApp} />
@@ -59,6 +51,12 @@ function App() {
         <Route exact path={"/reduxhook"} component={ReduxHook} />
         <Route exact path={"/todolisthook"} component={ToDoListHook} />
         <Route exact path={"/demohoc"} component={DemoHOC} />
+
+        <AdminTemplate path={"/admin/index"} component={Index} />
+        <AdminTemplate path={"/admin/users"} component={User} />
+        <AdminTemplate path={"/admin/demoantd"} component={DemoAntD} />
+
+        <Route path={"/admin/demolayout"} component={DemoLayout} />
 
         <Route exact path={"/"} component={Home} />
       </Switch>
