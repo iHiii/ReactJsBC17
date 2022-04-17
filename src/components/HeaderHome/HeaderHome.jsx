@@ -81,6 +81,16 @@ export default function HeaderHome() {
               Todoapp
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink
+              exact
+              activeClassName="bg-white text-dark"
+              className="nav-link"
+              to="/demohoc"
+            >
+              Demo HOC
+            </NavLink>
+          </li>
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
