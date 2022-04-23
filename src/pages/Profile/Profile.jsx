@@ -1,16 +1,22 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { layThongTinCaNhanAction } from "../../redux/actions/nguoiDungAction";
+import { USER_LOGIN } from "../../redux/actions/types/nguoiDungType";
 import { Redirect } from "react-router-dom";
 
-export default class Profile extends Component {
-  //Nếu như người dùng đăng nhập thì thông tin sẽ được lưu vào localstorage
-  render() {
-    if (!localStorage.getItem("USER_LOGIN")) {
-      alert(
-        "Bạn chưa đăng nhập nên không thể vào trang này vui lòng đăng nhập !"
-      );
-      return <Redirect to="/login" />;
-    }
-
-    return <div>Profile</div>;
+export default function Profile(props) {
+  const dispatch = useDispatch();
+  const { thongTinTaiKhoan } = useSelector((state) => state.nguoiDungReducer);
+  useEffect(() => {
+    const action = layThongTinCaNhanAction();
+    dispatch(action);
+  }, []);
+  if (!localStorage.getItem(USER_LOGIN)) {
+    alert(
+      "Bạn chưa đăng nhập nên không thể vào trang này vui lòng đăng nhập !"
+    );
+    return <Redirect to="/login" />;
   }
+
+  return <div>Hello :{thongTinTaiKhoan.taiKhoan}</div>;
 }

@@ -1,8 +1,16 @@
 //rfc
 import React from "react";
+import { useSelector } from 'react-redux'
 import { NavLink } from "react-router-dom";
 
 export default function HeaderHome() {
+  const {userLogin} = useSelector(state=>state.nguoiDungReducer);
+    const renderLogin = () => {
+        if(userLogin) {
+             return <NavLink exact activeClassName='bg-white text-dark' className="nav-link" to="/profile">Hello {userLogin.hoTen}</NavLink>
+        }
+        return <NavLink exact activeClassName='bg-white text-dark' className="nav-link" to="/login"> Đăng nhập</NavLink>;
+    }
   return (
     //b4-navbar-background
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -52,14 +60,7 @@ export default function HeaderHome() {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink
-              exact
-              activeClassName="bg-white text-dark"
-              className="nav-link"
-              to="/login"
-            >
-              login
-            </NavLink>
+          {renderLogin()}
           </li>
           <li className="nav-item">
             <NavLink

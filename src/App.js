@@ -26,6 +26,7 @@ import Index from "./pages/AdminPage/Index/Index";
 import User from "./pages/AdminPage/Users/User";
 import DemoAntD from "./pages/DemoAntD/DemoAntD";
 import DemoLayout from "./pages/DemoAntD/DemoLayout";
+import DemoFormik from './pages/DemoFormik/DemoFormik';
 
 function App() {
   return (
@@ -40,17 +41,18 @@ function App() {
         <HomeTemplate exact path={"/contact"} component={Contact} />
         <UserTemplate exact path={"/login"} component={Login} />
         <UserTemplate exact path={"/register"} component={Register} />
-        <Route exact path={"/profile"} component={Profile} />
-        <Route exact path={"/detail/:id"} component={Detail} />
-        <Route exact path={"/todoapp"} component={ToDoApp} />
-        <Route exact path={"/usestate"} component={UseStateDemo} />
-        <Route exact path={"/useeffect"} component={UseEffectDemo} />
-        <Route exact path={"/usecallback"} component={UseCallbackDemo} />
-        <Route exact path={"/usememo"} component={UseMemoDemo} />
-        <Route exact path={"/useref"} component={UseRefDemo} />
-        <Route exact path={"/reduxhook"} component={ReduxHook} />
-        <Route exact path={"/todolisthook"} component={ToDoListHook} />
-        <Route exact path={"/demohoc"} component={DemoHOC} />
+        <HomeTemplate exact path={'/profile'} component={Profile} />
+        <HomeTemplate exact path={'/detail/:id'} component={Detail} />
+        <HomeTemplate exact path={'/todoapp'} component={ToDoApp} />
+        <HomeTemplate exact path={'/usestate'} component={UseStateDemo} />
+        <HomeTemplate exact path={'/useeffect'} component={UseEffectDemo} />
+        <HomeTemplate exact path={'/usecallback'} component={UseCallbackDemo} />
+        <HomeTemplate exact path={'/usememo'} component={UseMemoDemo} />
+        <HomeTemplate exact path={'/useref'} component={UseRefDemo} />
+        <HomeTemplate exact path={'/reduxhook'} component={ReduxHook} />
+        <HomeTemplate exact path={'/todolisthook'} component={ToDoListHook} />
+        <HomeTemplate exact path={'/demohoc'} component={DemoHOC} />
+        <HomeTemplate exact path={'/formik'} component={DemoFormik} />
 
         <AdminTemplate path={"/admin/index"} component={Index} />
         <AdminTemplate path={"/admin/users"} component={User} />
